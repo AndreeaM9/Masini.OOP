@@ -12,17 +12,64 @@ class Car {
         this.viteza = viteza;
     }
     accelereaza(){
-        this.viteza += 10;
+        if (this.viteza !== 250){
+            this.viteza += 10;
+        }
     }
     franeaza(){
-        this.viteza -= 10;
+        if (this.viteza !== 0) {
+            this.viteza -= 10;
+        }
     }
     descrie(){
         console.log(`${this.model} ${this.culoare}, fabricat in ${this.anFabricatie}, merge cu ${this.viteza} km/h.`);
     }
 }
 
-const car1 = new Car("Toyota", "rosu", 2008, 90)
-const car2 = new Car("Ford Focus", "rosu", 2018, 120)
-car1.accelereaza();
-car1.descrie();
+
+let model = document.querySelector('#model'),
+    culoare = document.querySelector('#culoare'),
+    anFabricatie = document.querySelector('#anFabricatie'),
+    viteza = document.querySelector('#viteza'),
+    btnAccelereaza = document.querySelector('#accelereaza'),
+    btnFraneaza = document.querySelector('#franeaza');
+
+let buttonPushed = 0;
+const car1 = new Car();
+
+ btnAccelereaza.addEventListener('click', function() {
+
+    if (buttonPushed === 0){
+        buttonPushed = 1;
+        
+        car1.model = model.value;
+        car1.culoare = culoare.value;
+        car1.anFabricatie = anFabricatie.value;
+        car1.viteza = Number(viteza.value); 
+        
+        car1.descrie();
+    }
+    car1.accelereaza();
+    console.log(car1.viteza);
+}) 
+
+btnFraneaza.addEventListener('click', function() {
+    if (buttonPushed === 0){
+        buttonPushed = 1;
+        
+        car1.model = model.value;
+        car1.culoare = culoare.value;
+        car1.anFabricatie = anFabricatie.value;
+        car1.viteza = Number(viteza.value);
+        
+        car1.descrie();
+    } 
+    car1.franeaza();
+    console.log(car1.viteza);
+}) 
+
+// const car1 = new Car("Toyota", "rosu", 2008, 90)
+// const car2 = new Car("Ford Focus", "rosu", 2018, 120)
+// car1.accelereaza();
+// car1.descrie();
+
