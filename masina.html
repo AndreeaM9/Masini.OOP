@@ -4,17 +4,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Masina</title>
+    <link rel="stylesheet" href="masina.css">
 </head>
 <body>
-    <form action="">
-        <label>Model <input type="text" id="model" /></label>
-        <label>Culoare <input type="text" id="culoare" /></label>
-        <label>An Fabricatie <input type="number" id="anFabricatie" /></label>
-        <label>Viteza <input type="number" id="viteza" min="20" max="200"/></label>
-        <input type="button" value="Accelereaza" id="accelereaza"/>
-        <input type="button" value="Franeaza" id="franeaza"/>
+    <form action="" class="arrange-row">
+        <label class="justify-start model-label" for="model"> Model </label><input type="text" class="justify-start model" name="model" />
+        <label class="justify-start culoare-label" for="culoare">Culoare </label><input type="text" class="justify-start culoare" name="culoare"/>
+        <label class="justify-start anFabricatie-label" for="anFabricatie">An Fabricatie </label>
+            <input type="number" class="justify-start anFabricatie" name="anFabricatie" min="1886" max="2023"/>
+        <label class="justify-start viteza-label" for="viteza">Viteza </label>
+            <input type="number" class="justify-start viteza" min="5" max="250" name="viteza"/>
+        <input type="button" value="Accelereaza" class="justify-center accelereaza" />
+        <input type="button" value="Franeaza" class="justify-center franeaza" />
     </form>
+    <div class="rezultat">
+        <p id="rezultat-descriere" class="arrange-row"></p>
+        <p id="rezultat-viteza" class="arrange-row"></p>
+    </div>    
     <script src="masina.js"></script>
 </body>
 </html>
