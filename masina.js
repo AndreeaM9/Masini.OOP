@@ -12,12 +12,12 @@ class Car {
         this.viteza = viteza;
     }
     accelereaza(){
-        if (this.viteza < 250){
+        if (this.viteza + 10 <= 250){
             this.viteza += 10;
         }
     }
     franeaza(){
-        if (this.viteza >= 10) {
+        if (this.viteza - 10 >= 0) {
             this.viteza -= 10;
         }
     }
@@ -33,53 +33,47 @@ let model = document.querySelector('.model'),
     viteza = document.querySelector('.viteza'),
     btnAccelereaza = document.querySelector('.accelereaza'),
     btnFraneaza = document.querySelector('.franeaza');
+    
+let buttonPushed = false;
+    const car1 = new Car();
 
-let buttonPushed = 0;
-const car1 = new Car();
+const getSetValues = (car1) => {
+    if (model.value === "" || culoare.value === "" || anFabricatie.value === "" || viteza.value === ""){
+        alert("Lipsesc date");
+        return 1;
+    }
+
+    car1.model = model.value;
+    car1.culoare = culoare.value;
+    car1.anFabricatie = anFabricatie.value;
+    car1.viteza = Number(viteza.value);
+            
+    document.querySelector('#rezultat-descriere').textContent = car1.descrie();
+
+    model.value = "";
+    culoare.value = "";
+    anFabricatie.value = "";
+    viteza.value = "";
+}
+
 
  btnAccelereaza.addEventListener('click', () => {
 
-    if (buttonPushed === 1){
-        if (car1.model !== model.value && model.value !== ""){
-            
-            if (model.value === "" || culoare.value === "" || anFabricatie.value === "" || viteza.value === ""){
-                alert("Lipsesc date");
-                return;
-            }
-
-            car1.model = model.value;
-            car1.culoare = culoare.value;
-            car1.anFabricatie = anFabricatie.value;
-            car1.viteza = Number(viteza.value);
-                    
-            document.querySelector('#rezultat-descriere').textContent = car1.descrie();
-    
-            model.value = "";
-            culoare.value = "";
-            anFabricatie.value = "";
-            viteza.value = "";             
+    if (buttonPushed === true){
+        if (
+            (car1.model !== model.value && model.value !== "") ||
+            (car1.culoare !== culoare.value && culoare.value !== "") || 
+            (car1.anFabricatie !== anFabricatie.value && anFabricatie.value !== "") || 
+            (car1.viteza !== viteza.value && viteza.value !== "")
+        )
+        {
+            if ( getSetValues(car1) === 1 ) { return };
         }
     }
 
-    if (buttonPushed === 0){
-        
-        if (model.value === "" || culoare.value === "" || anFabricatie.value === "" || viteza.value === ""){
-            alert("Lipsesc date");
-            return;
-        }
-
-        buttonPushed = 1;
-        car1.model = model.value;
-        car1.culoare = culoare.value;
-        car1.anFabricatie = anFabricatie.value;
-        car1.viteza = Number(viteza.value); 
-        
-        document.querySelector('#rezultat-descriere').textContent = car1.descrie();
-
-        model.value = "";
-        culoare.value = "";
-        anFabricatie.value = "";
-        viteza.value = "";         
+    if (buttonPushed === false){
+        if ( getSetValues(car1) === 1 ) { return };
+        buttonPushed = true;        
     }
     car1.accelereaza();
     document.querySelector('#rezultat-viteza').textContent = "Merge cu viteza " + car1.viteza + " km/h";
@@ -89,47 +83,21 @@ const car1 = new Car();
 
 btnFraneaza.addEventListener('click', () => {
 
-    if (buttonPushed === 1){
-        if (car1.model !== model.value && model.value !== ""){
-
-            if (model.value === "" || culoare.value === "" || anFabricatie.value === "" || viteza.value === ""){
-                alert("Lipsesc date");
-                return;
-            }            
-            
-            car1.model = model.value;
-            car1.culoare = culoare.value;
-            car1.anFabricatie = anFabricatie.value;
-            car1.viteza = Number(viteza.value);
-                    
-            document.querySelector('#rezultat-descriere').textContent = car1.descrie();
-    
-            model.value = "";
-            culoare.value = "";
-            anFabricatie.value = "";
-            viteza.value = "";             
+    if (buttonPushed === true){
+        if (
+            (car1.model !== model.value && model.value !== "") ||
+            (car1.culoare !== culoare.value && culoare.value !== "") || 
+            (car1.anFabricatie !== anFabricatie.value && anFabricatie.value !== "") || 
+            (car1.viteza !== viteza.value && viteza.value !== "")
+        )
+        {
+            if ( getSetValues(car1) === 1 ) { return };
         }
     }    
 
-    if (buttonPushed === 0){
-
-        if (model.value === "" || culoare.value === "" || anFabricatie.value === "" || viteza.value === ""){
-            alert("Lipsesc date");
-            return;
-        }        
-
-        buttonPushed = 1;
-        car1.model = model.value;
-        car1.culoare = culoare.value;
-        car1.anFabricatie = anFabricatie.value;
-        car1.viteza = Number(viteza.value);
-                
-        document.querySelector('#rezultat-descriere').textContent = car1.descrie();
-
-        model.value = "";
-        culoare.value = "";
-        anFabricatie.value = "";
-        viteza.value = "";        
+    if (buttonPushed === false){
+        if ( getSetValues(car1) === 1 ) { return };
+        buttonPushed = true;
     } 
     car1.franeaza();
     document.querySelector('#rezultat-viteza').textContent = "Merge cu viteza " + car1.viteza + " km/h";
